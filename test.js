@@ -33,6 +33,23 @@ class Api
 
 		return result;
 	}
+
+	get_api_path_2(object, template)
+	{
+		let result = template;
+
+		for (let key in object) {
+			if (object.hasOwnProperty(key)) {
+				const value = encodeURIComponent(object[key]);
+				const placeholder = `%${key}%`;
+				if (result.includes(placeholder)) {
+					result = result.replace(new RegExp(placeholder, 'g'), value);
+				}
+			}
+		}
+
+		return result;
+	}
 }
 
 let user =
